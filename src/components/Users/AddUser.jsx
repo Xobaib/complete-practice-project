@@ -25,7 +25,7 @@ const FormInput = styled.form`
   }
 `;
 
-const AddUser = () => {
+const AddUser = (props) => {
   const [enteredUsername, setEnteredUsername] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
 
@@ -51,7 +51,15 @@ const AddUser = () => {
       return;
     }
 
-    console.log(enteredUsername, enteredAge);
+    // store the user inputs
+    // const userInputs = [
+    //   {
+    //     username: enteredUsername,
+    //     age: enteredAge,
+    //   },
+    // ];
+
+    // props.onUserInput(userInputs);
 
     setEnteredUsername("");
     setEnteredAge("");
