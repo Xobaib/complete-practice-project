@@ -39,13 +39,20 @@ const AddUser = () => {
     setEnteredAge(event.target.value);
   };
 
+  //   it will be executed when user clicks on the button
   const addUserHandler = (event) => {
     event.preventDefault();
-    // const userInputs = {
-    //   username: username,
-    //   age: age,
-    // };
+
+    // if one of the inputs was empty or an invalid information was entered
+    if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
+      return;
+    }
+    if (+enteredAge < 1) {
+      return;
+    }
+
     console.log(enteredUsername, enteredAge);
+
     setEnteredUsername("");
     setEnteredAge("");
   };
