@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
+import ErrorModal from "../UI/ErrorModal";
 
 const FormInput = styled.form`
   & label {
@@ -58,26 +59,29 @@ const AddUser = (props) => {
   };
 
   return (
-    <Card>
-      <FormInput onSubmit={addUserHandler}>
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          id="username"
-          onChange={usernameChangeHandler}
-          value={enteredUsername}
-        />
+    <div>
+      <ErrorModal title="an error occured!" message="something went wrong!" />
+      <Card isErrorModal={false} isAddUser={true} isUsersList={false}>
+        <FormInput onSubmit={addUserHandler}>
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            onChange={usernameChangeHandler}
+            value={enteredUsername}
+          />
 
-        <label htmlFor="age">Age (Years)</label>
-        <input
-          type="number"
-          id="age"
-          onChange={ageChangeHandler}
-          value={enteredAge}
-        />
-        <Button type="submit">Add User</Button>
-      </FormInput>
-    </Card>
+          <label htmlFor="age">Age (Years)</label>
+          <input
+            type="number"
+            id="age"
+            onChange={ageChangeHandler}
+            value={enteredAge}
+          />
+          <Button type="submit">Add User</Button>
+        </FormInput>
+      </Card>
+    </div>
   );
 };
 

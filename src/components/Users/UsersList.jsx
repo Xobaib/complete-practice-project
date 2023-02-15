@@ -17,7 +17,7 @@ const UserList = styled.ul`
 
 const UsersList = (props) => {
   return (
-    <Card>
+    <Card isErrorModal={false} isAddUser={false} isUsersList={true}>
       <UserList>
         {props.users.map((user) => {
           return (
