@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Card from "../UI/Card";
 import styled from "styled-components";
+import Card from "../UI/Card";
+import Button from "../UI/Button";
 
 const FormInput = styled.form`
   & label {
@@ -67,8 +68,7 @@ const AddUser = () => {
           //onChange={onChangeAgeHandler}
           //   value={age}
         />
-
-        <button type="submit">Add User</button>
+        <Button type="submit">Add User</Button>
       </FormInput>
     </Card>
   );
