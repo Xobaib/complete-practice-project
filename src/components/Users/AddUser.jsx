@@ -51,15 +51,7 @@ const AddUser = (props) => {
       return;
     }
 
-    // store the user inputs
-    // const userInputs = [
-    //   {
-    //     username: enteredUsername,
-    //     age: enteredAge,
-    //   },
-    // ];
-
-    // props.onUserInput(userInputs);
+    props.onAddUser(enteredUsername, enteredAge);
 
     setEnteredUsername("");
     setEnteredAge("");
