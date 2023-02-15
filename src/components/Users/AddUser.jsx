@@ -26,18 +26,18 @@ const FormInput = styled.form`
 `;
 
 const AddUser = () => {
-  //   const [username, setUsername] = useState("");
-  //   const [age, setAge] = useState("");
+  const [enteredUsername, setEnteredUsername] = useState("");
+  const [enteredAge, setEnteredAge] = useState("");
 
-  //   const onChangeUsernameHandler = (event) => {
-  //     // console.log(event.target.value);
-  //     setUsername(event.target.value);
-  //   };
+  // storing the value of Usrename input in enteredUsername state
+  const usernameChangeHandler = (event) => {
+    setEnteredUsername(event.target.value);
+  };
 
-  //   const onChangeAgeHandler = (event) => {
-  //     // console.log(event.target.value);
-  //     setAge(event.target.value);
-  //   };
+  // storing the value of Age input in enteredAge state
+  const ageChangeHandler = (event) => {
+    setEnteredAge(event.target.value);
+  };
 
   const addUserHandler = (event) => {
     event.preventDefault();
@@ -45,9 +45,9 @@ const AddUser = () => {
     //   username: username,
     //   age: age,
     // };
-    // console.log(userInputs);
-    // setUsername("");
-    // setAge("");
+    console.log(enteredUsername, enteredAge);
+    setEnteredUsername("");
+    setEnteredAge("");
   };
 
   return (
@@ -57,16 +57,16 @@ const AddUser = () => {
         <input
           type="text"
           id="username"
-          //onChange={onChangeUsernameHandler}
-          //value={username}
+          onChange={usernameChangeHandler}
+          value={enteredUsername}
         />
 
         <label htmlFor="age">Age (Years)</label>
         <input
           type="number"
           id="age"
-          //onChange={onChangeAgeHandler}
-          //   value={age}
+          onChange={ageChangeHandler}
+          value={enteredAge}
         />
         <Button type="submit">Add User</Button>
       </FormInput>
