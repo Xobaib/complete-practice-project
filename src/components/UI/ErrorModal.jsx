@@ -35,7 +35,7 @@ const Backdrop = styled.div`
 const ErrorModal = (props) => {
   return (
     <div>
-      <Backdrop />
+      <Backdrop onClick={props.onHandleError} />
       <Card isErrorModal={true} isAddUser={false} isUsersList={false}>
         <ErrorTitle>
           <h2>{props.title}</h2>
@@ -44,7 +44,7 @@ const ErrorModal = (props) => {
           <p>{props.message}</p>
         </ErrorMessage>
         <TheButton>
-          <Button>Okay</Button>
+          <Button onClick={props.onHandleError}>Okay</Button>
         </TheButton>
       </Card>
     </div>

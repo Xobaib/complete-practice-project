@@ -11,10 +11,17 @@ function App() {
     });
   };
 
+  const deleteItemHandler = (userId) => {
+    setUsersList((prevItems) => {
+      const updatedItems = prevItems.filter((user) => user.id !== userId);
+      return updatedItems;
+    });
+  };
+
   return (
     <div>
       <AddUser onAddUser={addUserHandler} />
-      <UsersList users={usersList} />
+      <UsersList users={usersList} onDeleteItem={deleteItemHandler} />
     </div>
   );
 }

@@ -29,6 +29,7 @@ const FormInput = styled.form`
 const AddUser = (props) => {
   const [enteredUsername, setEnteredUsername] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
+  const [error, setError] = useState();
 
   // storing the value of Usrename input in enteredUsername state
   const usernameChangeHandler = (event) => {
@@ -46,9 +47,17 @@ const AddUser = (props) => {
 
     // if one of the inputs was empty or an invalid information was entered
     if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
+      setError({
+        title: "Invalid Input",
+        message: "please enter a valid name and age (non-empty values).",
+      });
       return;
     }
     if (+enteredAge < 1) {
+      setError({
+        title: "Invalid Age",
+        message: "please enter a valid age (> 0).",
+      });
       return;
     }
 
@@ -58,9 +67,19 @@ const AddUser = (props) => {
     setEnteredAge("");
   };
 
+  const errorHandler = () => {
+    setError(undefined);
+  };
+
   return (
     <div>
-      <ErrorModal title="an error occured!" message="something went wrong!" />
+      {error && (
+        <ErrorModal
+          title={error.title}
+          message={error.message}
+          onHandleError={errorHandler}
+        />
+      )}
       <Card isErrorModal={false} isAddUser={true} isUsersList={false}>
         <FormInput onSubmit={addUserHandler}>
           <label htmlFor="username">Username</label>
