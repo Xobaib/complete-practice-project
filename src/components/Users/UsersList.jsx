@@ -6,19 +6,33 @@ const UserList = styled.ul`
   & {
     list-style: none;
     padding: ${(props) => (props.userConfirm ? "1rem" : "0px")};
+    position: absolute;
+    top: 60%;
+    left: 35%;
+    width: 400px;
+    background-color: #2c3e50;
+    border-radius: 10px;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+    z-index: -1;
   }
 
   & li {
-    border: 1px solid #ccc;
+    border: 1px solid #000;
+    background-color: #131418;
+    color: #1da1f2;
+    letter-spacing: 2px;
     margin: 0.5rem 0;
     padding: 0.5rem;
     cursor: pointer;
+    text-align: center;
   }
 
   & li:hover {
     border: 3px solid red;
     border-radius: 5px;
     background-color: #efd0d0;
+    color: #d50000;
   }
 `;
 

@@ -3,7 +3,7 @@ import Button from "./Button";
 import styled from "styled-components";
 
 const ErrorTitle = styled.header`
-  background: #4f005f;
+  background: red;
   padding: 1rem;
 
   & h2 {
@@ -16,7 +16,7 @@ const ErrorMessage = styled.div`
   padding: 1rem;
 `;
 
-const TheButton = styled.footer`
+const ErrorButton = styled.footer`
   padding: 1rem;
   display: flex;
   justify-content: flex-end;
@@ -24,9 +24,9 @@ const TheButton = styled.footer`
 
 const Backdrop = styled.div`
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  top: -15%;
+  left: -80%;
+  width: 1000px;
   height: 100vh;
   z-index: 10;
   background: rgba(0, 0, 0, 0.75);
@@ -43,9 +43,9 @@ const ErrorModal = (props) => {
         <ErrorMessage>
           <p>{props.message}</p>
         </ErrorMessage>
-        <TheButton>
+        <ErrorButton>
           <Button onClick={props.onHandleError}>Okay</Button>
-        </TheButton>
+        </ErrorButton>
       </Card>
     </div>
   );

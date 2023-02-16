@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 const Card = styled.div`
@@ -17,18 +16,21 @@ const Card = styled.div`
   ${(props) =>
     props.isErrorModal
       ? ` position: fixed;
-  top: 30vh;
-  left: 10%;
-  width: 80%;
+  top: 10vh;
+  left: 0%;
+  width: 90%;
   z-index: 100;
-  overflow: hidden;`
+  overflow: hidden;
+
+  `
       : ""}
 
   ${(props) =>
     props.isUsersList
       ? ` margin: 2rem auto;
   width: 90%;
-  max-width: 40rem;`
+  max-width: 40rem;
+  `
       : ""}
 `;
 

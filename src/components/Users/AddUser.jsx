@@ -4,27 +4,79 @@ import Card from "../UI/Card";
 import Button from "../UI/Button";
 import ErrorModal from "../UI/ErrorModal";
 
-const FormInput = styled.form`
-  & label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+const AddUserBox = styled.div`
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+
+  & .user-box {
+    position: relative;
   }
 
-  & input {
-    font: inherit;
-    display: block;
+  & .user-box input {
     width: 100%;
-    border: 1px solid #ccc;
-    padding: 0.15rem;
-    margin-bottom: 0.5rem;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
+  & .user-box label {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: 0.5s;
   }
 
-  & input:focus {
-    outline: none;
-    border-color: #4f005f;
+  & .user-box input:focus ~ label,
+  & .user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #03e9f4;
+    font-size: 12px;
+  }
+
+  & form Button {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #1da1f2;
+    background-color: #131418;
+    border: 1px solid black;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin-top: 40px;
+    letter-spacing: 2px;
+  }
+
+  & Button:hover {
+    background: #03e9f4;
+    color: #000;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
+      0 0 100px #03e9f4;
   }
 `;
+
+const UserBox = styled.div``;
 
 const AddUser = (props) => {
   const [enteredUsername, setEnteredUsername] = useState("");
@@ -72,7 +124,7 @@ const AddUser = (props) => {
   };
 
   return (
-    <div>
+    <AddUserBox>
       {error && (
         <ErrorModal
           title={error.title}
@@ -80,8 +132,9 @@ const AddUser = (props) => {
           onHandleError={errorHandler}
         />
       )}
-      <Card isErrorModal={false} isAddUser={true} isUsersList={false}>
-        <FormInput onSubmit={addUserHandler}>
+
+      <form onSubmit={addUserHandler}>
+        <UserBox className="user-box">
           <label htmlFor="username">Username</label>
           <input
             type="text"
@@ -89,7 +142,8 @@ const AddUser = (props) => {
             onChange={usernameChangeHandler}
             value={enteredUsername}
           />
-
+        </UserBox>
+        <UserBox className="user-box">
           <label htmlFor="age">Age (Years)</label>
           <input
             type="number"
@@ -97,10 +151,10 @@ const AddUser = (props) => {
             onChange={ageChangeHandler}
             value={enteredAge}
           />
-          <Button type="submit">Add User</Button>
-        </FormInput>
-      </Card>
-    </div>
+        </UserBox>
+        <Button type="submit">Add User</Button>
+      </form>
+    </AddUserBox>
   );
 };
 
