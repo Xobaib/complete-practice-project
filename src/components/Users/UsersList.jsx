@@ -5,7 +5,7 @@ import styled from "styled-components";
 const UserList = styled.ul`
   & {
     list-style: none;
-    padding: 1rem;
+    padding: ${(props) => (props.userConfirm ? "1rem" : "0px")};
   }
 
   & li {
@@ -14,15 +14,24 @@ const UserList = styled.ul`
     padding: 0.5rem;
     cursor: pointer;
   }
+
+  & li:hover {
+    border: 3px solid red;
+    border-radius: 5px;
+    background-color: #efd0d0;
+  }
 `;
 
 const UsersList = (props) => {
   return (
     <Card isErrorModal={false} isAddUser={false} isUsersList={true}>
-      <UserList>
+      <UserList userConfirm={props.userConfirm}>
         {props.users.map((user) => {
           const deleteHandler = () => {
-            props.onDeleteItem(user.id);
+            const userConfirm = window.confirm(
+              "Do you want to dalete this item?"
+            );
+            userConfirm && props.onDeleteItem(user.id);
           };
           return (
             <li key={user.id} onClick={deleteHandler}>

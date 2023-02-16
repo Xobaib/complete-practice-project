@@ -4,9 +4,11 @@ import UsersList from "./components/Users/UsersList";
 
 function App() {
   const [usersList, setUsersList] = useState([]);
+  const [isUserEnered, setIsUserEntered] = useState(false);
 
   const addUserHandler = (uName, uAge) => {
     setUsersList((prevUsersList) => {
+      setIsUserEntered(true);
       return [...prevUsersList, { name: uName, age: uAge, id: Math.random() }];
     });
   };
@@ -21,7 +23,11 @@ function App() {
   return (
     <div>
       <AddUser onAddUser={addUserHandler} />
-      <UsersList users={usersList} onDeleteItem={deleteItemHandler} />
+      <UsersList
+        users={usersList}
+        onDeleteItem={deleteItemHandler}
+        userConfirm={isUserEnered}
+      />
     </div>
   );
 }
