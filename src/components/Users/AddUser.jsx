@@ -1,20 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
-import Card from "../UI/Card";
 import Button from "../UI/Button";
 import ErrorModal from "../UI/ErrorModal";
 
 const AddUserBox = styled.div`
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  width: 400px;
+  margin-top: 10rem;
+  margin-left: 11.5rem;
+  margin-right: auto;
+  width: 300px;
   padding: 40px;
   transform: translate(-50%, -50%);
   background: rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
   border-radius: 10px;
+
+  @media all and (min-width: 768px) {
+    position: absolute;
+    top: 5%;
+    left: 35%;
+    width: 400px;
+  }
 
   & .user-box {
     position: relative;
@@ -79,33 +85,26 @@ const AddUserBox = styled.div`
 const UserBox = styled.div``;
 
 const AddUser = (props) => {
-  const [enteredUsername, setEnteredUsername] = useState("");
-  const [enteredAge, setEnteredAge] = useState("");
+  const userNameInput = useRef();
+  const userAgeInput = useRef();
+
   const [error, setError] = useState();
-
-  // storing the value of Usrename input in enteredUsername state
-  const usernameChangeHandler = (event) => {
-    setEnteredUsername(event.target.value);
-  };
-
-  // storing the value of Age input in enteredAge state
-  const ageChangeHandler = (event) => {
-    setEnteredAge(event.target.value);
-  };
 
   //   it will be executed when user clicks on the button
   const addUserHandler = (event) => {
     event.preventDefault();
-
+    // storing the user inputs on refs
+    const name = userNameInput.current.value;
+    const age = userAgeInput.current.value;
     // if one of the inputs was empty or an invalid information was entered
-    if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
+    if (name.trim().length === 0 || age.trim().length === 0) {
       setError({
         title: "Invalid Input",
         message: "please enter a valid name and age (non-empty values).",
       });
       return;
     }
-    if (+enteredAge < 1) {
+    if (+age < 1) {
       setError({
         title: "Invalid Age",
         message: "please enter a valid age (> 0).",
@@ -113,10 +112,10 @@ const AddUser = (props) => {
       return;
     }
 
-    props.onAddUser(enteredUsername, enteredAge);
+    props.onAddUser(name, age);
 
-    setEnteredUsername("");
-    setEnteredAge("");
+    userNameInput.current.value = "";
+    userAgeInput.current.value = "";
   };
 
   const errorHandler = () => {
@@ -133,14 +132,14 @@ const AddUser = (props) => {
         />
       )}
 
-      <form onSubmit={addUserHandler}>
+      <form onSubmit={addUserHandler} autoComplete="off">
         <UserBox className="user-box">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">Name</label>
           <input
             type="text"
             id="username"
-            onChange={usernameChangeHandler}
-            value={enteredUsername}
+            ref={userNameInput}
+            placeholder="just type your name 😉"
           />
         </UserBox>
         <UserBox className="user-box">
@@ -148,8 +147,8 @@ const AddUser = (props) => {
           <input
             type="number"
             id="age"
-            onChange={ageChangeHandler}
-            value={enteredAge}
+            ref={userAgeInput}
+            placeholder="something like: 89 😐"
           />
         </UserBox>
         <Button type="submit">Add User</Button>

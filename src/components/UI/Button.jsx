@@ -22,8 +22,4 @@ const Button = styled.button`
   }
 `;
 
-// const Button = () => {
-//     return ( <button></button> );
-// }
-
 export default Button;
