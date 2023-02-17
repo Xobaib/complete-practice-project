@@ -6,7 +6,7 @@ const UserList = styled.ul`
   & {
     list-style: none;
     padding: ${(props) => (props.userConfirm ? "1rem" : "0px")};
-    margin-top: 0px;
+    margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
     width: 300px;
